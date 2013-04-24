@@ -18,3 +18,17 @@ record Cat o ℓ : Set (suc (o ⊔ ℓ)) where
     idʳ   : ∀ {A B} (f : Hom A B) → id ∘ f ≡ f
     assoc : ∀ {A B C D} (f : Hom C D) (g : Hom B C) (h : Hom A B) →
             f ∘ (g ∘ h) ≡ (f ∘ g) ∘ h
+
+
+_op : ∀ {o ℓ} → Cat o ℓ → Cat o ℓ
+c op = record
+  { Obj = Obj
+  ; Hom = λ A B → Hom B A
+  ; id  = id
+  ; _∘_ = λ f g → g ∘ f
+  ; idˡ = idʳ
+  ; idʳ = idˡ
+  ; assoc = λ f g h → sym (assoc h g f)
+  }
+  where
+  open Cat c
