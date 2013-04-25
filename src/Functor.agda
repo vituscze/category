@@ -1,8 +1,9 @@
 module Functor where
 
 open import Level
-open import Category
 open import Relation.Binary.PropositionalEquality
+
+open import Category
 
 record Fun {o₁ o₂ ℓ₁ ℓ₂} (C : Cat o₁ ℓ₁) (D : Cat o₂ ℓ₂) : Set (o₁ ⊔ ℓ₁ ⊔ o₂ ⊔ ℓ₂) where
   open Cat
