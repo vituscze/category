@@ -39,8 +39,8 @@ functorCat C D = record
   open Fun
   open Natural
 
-  id-nat : {A : Fun C D} → Natural A A
-  id-nat {A} = record
+  id-nat : {F : Fun C D} → Natural F F
+  id-nat = record
     { cmp = id D
     ; nat = trans (idˡ D) (sym (idʳ D))
     }
