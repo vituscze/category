@@ -23,3 +23,40 @@ record Natural {o₁ o₂ ℓ₁ ℓ₂} {C : Cat o₁ ℓ₁} {D : Cat o₂ ℓ
     cmp : ∀ {X} → Hom D (F₀ X) (G₀ X)
     nat : ∀ {X Y} {f : Hom C X Y} →
           G₁ f ∘d cmp ≡ cmp ∘d F₁ f
+
+functorCat : ∀ {o₁ o₂ ℓ₁ ℓ₂} → Cat o₁ ℓ₁ → Cat o₂ ℓ₂ → Cat (o₁ ⊔ o₂ ⊔ ℓ₁ ⊔ ℓ₂) (o₁ ⊔ ℓ₁ ⊔ ℓ₂)
+functorCat C D = record
+  { Obj = Fun C D
+  ; Hom = Natural
+  ; id  = id-nat
+  ; _∘_ = ∘-nat
+  ; idˡ = {!!}
+  ; idʳ = {!!}
+  ; assoc = {!!}
+  }
+  where
+  open Cat
+  open Fun
+  open Natural
+
+  id-nat : {A : Fun C D} → Natural A A
+  id-nat {A} = record
+    { cmp = id D
+    ; nat = trans (idˡ D) (sym (idʳ D))
+    }
+
+  ∘-nat : {F G H : Fun C D} → Natural G H → Natural F G → Natural F H
+  ∘-nat {F} {G} {H} α β = record
+    { cmp = cmp α ∘d cmp β
+    ; nat = λ {_} {_} {f} → begin
+        F₁ H f ∘d (cmp α ∘d cmp β) ≡⟨ assoc D ⟩
+        (F₁ H f ∘d cmp α) ∘d cmp β ≡⟨ cong (λ x → x ∘d cmp β) (nat α) ⟩
+        (cmp α ∘d F₁ G f) ∘d cmp β ≡⟨ sym (assoc D) ⟩
+        cmp α ∘d (F₁ G f ∘d cmp β) ≡⟨ cong (λ x → cmp α ∘d x) (nat β) ⟩
+        cmp α ∘d (cmp β ∘d F₁ F f) ≡⟨ assoc D ⟩
+        (cmp α ∘d cmp β) ∘d F₁ F f ∎
+    }
+    where
+    open ≡-Reasoning
+
+    _∘d_ = _∘_ D
