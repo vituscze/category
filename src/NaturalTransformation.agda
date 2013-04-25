@@ -49,12 +49,12 @@ functorCat C D = record
   ∘-nat {F} {G} {H} α β = record
     { cmp = cmp α ∘d cmp β
     ; nat = λ {_} {_} {f} → begin
-        F₁ H f ∘d (cmp α ∘d cmp β) ≡⟨ assoc D ⟩
-        (F₁ H f ∘d cmp α) ∘d cmp β ≡⟨ cong (λ x → x ∘d cmp β) (nat α) ⟩
-        (cmp α ∘d F₁ G f) ∘d cmp β ≡⟨ sym (assoc D) ⟩
-        cmp α ∘d (F₁ G f ∘d cmp β) ≡⟨ cong (λ x → cmp α ∘d x) (nat β) ⟩
-        cmp α ∘d (cmp β ∘d F₁ F f) ≡⟨ assoc D ⟩
-        (cmp α ∘d cmp β) ∘d F₁ F f ∎
+         F₁ H f ∘d (cmp α   ∘d cmp β)  ≡⟨ assoc D ⟩
+        (F₁ H f ∘d  cmp α)  ∘d cmp β   ≡⟨ cong (λ x → x ∘d cmp β) (nat α) ⟩
+        (cmp α  ∘d  F₁ G f) ∘d cmp β   ≡⟨ sym (assoc D) ⟩
+         cmp α  ∘d (F₁ G f  ∘d cmp β)  ≡⟨ cong (λ x → cmp α ∘d x) (nat β) ⟩
+         cmp α  ∘d (cmp β   ∘d F₁ F f) ≡⟨ assoc D ⟩
+        (cmp α  ∘d  cmp β)  ∘d F₁ F f  ∎
     }
     where
     open ≡-Reasoning
