@@ -21,7 +21,8 @@ record Natural {o₁ o₂ ℓ₁ ℓ₂} {C : Cat o₁ ℓ₁} {D : Cat o₂ ℓ
 
   field
     cmp : ∀ {X} → Hom D (F₀ X) (G₀ X)
-    nat : ∀ {X Y} {f : Hom C X Y} →
+
+    .nat : ∀ {X Y} {f : Hom C X Y} →
           G₁ f ∘d cmp ≡ cmp ∘d F₁ f
 
 functorCat : ∀ {o₁ o₂ ℓ₁ ℓ₂} → Cat o₁ ℓ₁ → Cat o₂ ℓ₂ → Cat (o₁ ⊔ o₂ ⊔ ℓ₁ ⊔ ℓ₂) (o₁ ⊔ ℓ₁ ⊔ ℓ₂)
@@ -40,7 +41,7 @@ functorCat C D = record
   open Natural
 
   id-nat : {F : Fun C D} → Natural F F
-  id-nat = record
+  id-nat {F} = record
     { cmp = id D
     ; nat = trans (idˡ D) (sym (idʳ D))
     }
