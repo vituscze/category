@@ -59,11 +59,11 @@ module FunCat {o₁ o₂ ℓ₁ ℓ₂} {C : Cat o₁ ℓ₁} {D : Cat o₂ ℓ�
     }
 
   .∘₀-idʳ : {F G : Fun C D} {α : Natural F G} → id₀ ∘₀ α ≡n α
-  ∘₀-idʳ = Cat.idʳ D
+  ∘₀-idʳ = idʳ D
 
   .∘₀-idˡ : {F G : Fun C D} {α : Natural F G} → α ∘₀ id₀ ≡n α
-  ∘₀-idˡ = Cat.idˡ D
+  ∘₀-idˡ = idˡ D
 
   .∘₀-assoc : {F G H I : Fun C D} {α : Natural H I} {β : Natural G H} {γ : Natural F G} →
               α ∘₀ (β ∘₀ γ) ≡n (α ∘₀ β) ∘₀ γ
-  ∘₀-assoc = Cat.assoc D
+  ∘₀-assoc = assoc D
