@@ -17,7 +17,7 @@ record Cat o ℓ : Set (suc (o ⊔ ℓ)) where
     .idˡ   : ∀ {A B} {f : Hom A B} → f ∘ id ≡ f
     .idʳ   : ∀ {A B} {f : Hom A B} → id ∘ f ≡ f
     .assoc : ∀ {A B C D} {f : Hom C D} {g : Hom B C} {h : Hom A B} →
-            f ∘ (g ∘ h) ≡ (f ∘ g) ∘ h
+             f ∘ (g ∘ h) ≡ (f ∘ g) ∘ h
 
 
 _op : ∀ {o ℓ} → Cat o ℓ → Cat o ℓ

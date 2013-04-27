@@ -20,4 +20,4 @@ record Fun {o₁ o₂ ℓ₁ ℓ₂} (C : Cat o₁ ℓ₁) (D : Cat o₂ ℓ₂)
 
     .resp-id : ∀ {A} → idd ≡ F₁ (idc {A})
     .resp-∘  : ∀ {X Y Z} {f : Hom C Y Z} {g : Hom C X Y} →
-              F₁ (f ∘c g) ≡ F₁ f ∘d F₁ g
+               F₁ (f ∘c g) ≡ F₁ f ∘d F₁ g
