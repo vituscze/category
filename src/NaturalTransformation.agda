@@ -36,7 +36,7 @@ module FunCat {o₁ o₂ ℓ₁ ℓ₂} {C : Cat o₁ ℓ₁} {D : Cat o₂ ℓ�
   infix 2 _≡n_
 
   _≡n_ : {F G : Fun C D} → Rel (Natural F G) (o₁ ⊔ ℓ₂)
-  _≡n_ X Y = ∀ {x} → Natural.cmp X x ≡ Natural.cmp Y x
+  _≡n_ X Y = ∀ {x} → cmp X x ≡ cmp Y x
 
   _∘d_ = _∘_ D
 
